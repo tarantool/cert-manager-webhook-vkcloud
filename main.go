@@ -11,12 +11,12 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 
-	"github.com/cert-manager/webhook-example/vkcloud"
 	"github.com/gophercloud/gophercloud"
 	"github.com/jetstack/cert-manager/pkg/acme/webhook/apis/acme/v1alpha1"
 	"github.com/jetstack/cert-manager/pkg/acme/webhook/cmd"
 	"github.com/jetstack/cert-manager/pkg/issuer/acme/dns/util"
 	"github.com/pkg/errors"
+	"github.com/vasiliy-t/cert-manager-webhook-vkcloud/vkcloud"
 	core "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
