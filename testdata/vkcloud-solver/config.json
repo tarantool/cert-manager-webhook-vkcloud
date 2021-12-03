@@ -1,0 +1,22 @@
+{
+    "osAuthUrlSecretRef": {
+      "name": "vkcloud-secret",
+      "key": "os_auth_url"
+    },
+    "osUsernameSecretRef": {
+      "name": "vkcloud-secret",
+      "key": "os_username"
+    },
+    "osPasswordSecretRef": {
+      "name": "vkcloud-secret",
+      "key": "os_password"
+    },
+    "osProjectIDSecretRef": {
+      "name": "vkcloud-secret",
+      "key": "os_project_id"
+    },
+    "osDomainNameSecretRef": {
+      "name": "vkcloud-secret",
+      "key": "os_domain_name"
+    }
+  }
