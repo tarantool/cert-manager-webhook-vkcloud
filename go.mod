@@ -1,4 +1,4 @@
-module github.com/vasiliy-t/cert-manager-webhook-vkcloud
+module github.com/tarantool/cert-manager-webhook-vkcloud
 
 go 1.13
 

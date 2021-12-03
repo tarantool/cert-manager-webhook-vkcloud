@@ -28,7 +28,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Tag docker image
-        run: docker tag cert-manager-webhook-vkcloud:latest ghcr.io/vasiliy-t/cert-manager-webhook-vkcloud:latest
+        run: docker tag cert-manager-webhook-vkcloud:latest ghcr.io/tarantool/cert-manager-webhook-vkcloud:latest
 
       - name: Publish docker image to Github Container Registry
-        run: docker push ghcr.io/vasiliy-t/cert-manager-webhook-vkcloud:latest
+        run: docker push ghcr.io/tarantool/cert-manager-webhook-vkcloud:latest

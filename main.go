@@ -16,7 +16,7 @@ import (
 	"github.com/jetstack/cert-manager/pkg/acme/webhook/cmd"
 	"github.com/jetstack/cert-manager/pkg/issuer/acme/dns/util"
 	"github.com/pkg/errors"
-	"github.com/vasiliy-t/cert-manager-webhook-vkcloud/vkcloud"
+	"github.com/tarantool/cert-manager-webhook-vkcloud/vkcloud"
 	core "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
