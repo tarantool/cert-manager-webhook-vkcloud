@@ -13,7 +13,7 @@ certManager:
   serviceAccountName: cert-manager
 
 image:
-  repository: cert-manager-webhook-vkcloud
+  repository: ghcr.io/tarantool/cert-manager-webhook-vkcloud
   tag: latest
   pullPolicy: IfNotPresent
 
