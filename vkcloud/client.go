@@ -42,7 +42,7 @@ func (e ZoneNotFoundError) Error() string {
 
 func (c *Client) GetZone(resolvedZone string) (*Zone, error) {
 	zones := ZoneCollection{}
-	_, err := c.providerClient.Request("GET", "https://mcs.mail.ru/public-dns/1.0.0/tenants/"+c.authOpts.TenantID+"/dns/", &gophercloud.RequestOpts{
+	_, err := c.providerClient.Request("GET", "https://mcs.mail.ru/public-dns/v2/dns/", &gophercloud.RequestOpts{
 		JSONResponse: &zones,
 	})
 	if err != nil {
@@ -72,17 +72,17 @@ type Record struct {
 
 type RecordCollection []*Record
 
-type RecrodNotFoundErr struct {
+type RecordNotFoundErr struct {
 	msg string
 }
 
-func (e RecrodNotFoundErr) Error() string {
+func (e RecordNotFoundErr) Error() string {
 	return e.msg
 }
 
 func (c *Client) FindRecordByContent(zone *Zone, content string) (*Record, error) {
 	records := RecordCollection{}
-	_, err := c.providerClient.Request("GET", "https://mcs.mail.ru/public-dns/1.0.0/tenants/"+string(c.authOpts.TenantID)+"/dns/"+string(zone.UUID)+"/txt/", &gophercloud.RequestOpts{
+	_, err := c.providerClient.Request("GET", "https://mcs.mail.ru/public-dns/v2/dns/"+zone.UUID+"/txt/", &gophercloud.RequestOpts{
 		JSONResponse: &records,
 	})
 	if err != nil {
@@ -97,7 +97,7 @@ func (c *Client) FindRecordByContent(zone *Zone, content string) (*Record, error
 		}
 	}
 	if needle == nil {
-		return nil, RecrodNotFoundErr{fmt.Sprintf("Record not found for zone %s", zone.Zone)}
+		return nil, RecordNotFoundErr{fmt.Sprintf("Record not found for zone %s", zone.Zone)}
 	}
 
 	return needle, nil
@@ -110,7 +110,7 @@ type CreateDNSRecordRequest struct {
 }
 
 func (c *Client) CreateRecord(zone *Zone, record *Record) error {
-	_, err := c.providerClient.Request("POST", "https://mcs.mail.ru/public-dns/1.0.0/tenants/"+string(c.authOpts.TenantID)+"/dns/"+zone.UUID+"/txt/", &gophercloud.RequestOpts{
+	_, err := c.providerClient.Request("POST", "https://mcs.mail.ru/public-dns/v2/dns/"+zone.UUID+"/txt/", &gophercloud.RequestOpts{
 		JSONBody: &CreateDNSRecordRequest{
 			Content: record.Content,
 			Name:    record.Name,
@@ -125,7 +125,7 @@ func (c *Client) CreateRecord(zone *Zone, record *Record) error {
 }
 
 func (c *Client) DeleteRecord(zone *Zone, record *Record) error {
-	_, err := c.providerClient.Request("DELETE", "https://mcs.mail.ru/public-dns/1.0.0/tenants/"+string(c.authOpts.TenantID)+"/dns/"+string(zone.UUID)+"/txt/"+record.UUID, &gophercloud.RequestOpts{})
+	_, err := c.providerClient.Request("DELETE", "https://mcs.mail.ru/public-dns/v2/dns/"+zone.UUID+"/txt/"+record.UUID, &gophercloud.RequestOpts{})
 	if err != nil {
 		return err
 	}
