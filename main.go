@@ -232,7 +232,7 @@ func (c *customDNSProviderSolver) CleanUp(ch *v1alpha1.ChallengeRequest) error {
 
 	record, err := client.FindRecordByContent(zone, ch.Key)
 	if err != nil {
-		if errors.As(err, &vkcloud.RecrodNotFoundErr{}) {
+		if errors.As(err, &vkcloud.RecordNotFoundErr{}) {
 			fmt.Printf("record not found")
 			return nil
 		}
